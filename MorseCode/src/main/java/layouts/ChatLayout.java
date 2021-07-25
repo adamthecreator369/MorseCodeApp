@@ -221,15 +221,8 @@ public class ChatLayout extends Layout {
 		portField.setBounds(R.dimens.CHAT_FIELD_X, R.dimens.PORT_FIELD_Y, R.dimens.CHAT_FIELD_WIDTH, R.dimens.CHAT_FIELD_HEIGHT);
 		connectionLabel.setBounds(R.dimens.CONN_LABEL_X, R.dimens.CONN_LABEL_Y, R.dimens.LABEL_WIDTH, R.dimens.LABEL_HEIGHT);
 		connectionColor.setBounds(R.dimens.CONN_COLOR_X, R.dimens.CONN_COLOR_Y, R.dimens.COLOR_WIDTH, R.dimens.COLOR_HEIGHT);
-		
-		
-		
-		// TODO:: FIX THESE TO : REFACTOR EXTRACT CONSTANTS
-		hostRadio.setBounds(R.dimens.HOST_RADIO_X, R.dimens.HOST_RADIO_Y, R.dimens.BTN_WIDTH-10, R.dimens.BTN_HEIGHT);
-		guestRadio.setBounds(R.dimens.GUEST_RADIO_X, R.dimens.CHAT_BTN_Y - 15, R.dimens.BTN_WIDTH-10, R.dimens.BTN_HEIGHT);
-		
-		
-		
+		hostRadio.setBounds(R.dimens.HOST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, 20);
+		guestRadio.setBounds(R.dimens.GUEST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, 20);
 		connectBtn.setBounds(R.dimens.CONNECT_BTN_X, R.dimens.CONNECT_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		disconnectBtn.setBounds(R.dimens.DISCONNECT_BTN_X, R.dimens.DISCONNECT_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		chatLabel.setBounds(R.dimens.CHAT_AREA_X, R.dimens.CHAT_LABEL_Y, R.dimens.LABEL_WIDTH, R.dimens.LABEL_HEIGHT);
