@@ -44,7 +44,6 @@ public abstract class ApplicationWindow {
 
 	/** Sets the Frame's specifications and settings. */
 	protected void setFrameSpecs() {
-		frame.setLocation(340, 120);
 		frame.setResizable(false);
 		frame.setLayout(null);
 		frame.setTitle(R.string.APP_TITLE);
