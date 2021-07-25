@@ -47,7 +47,7 @@ public class EncoderDecoderTool extends ApplicationWindow {
 	protected void setFrameSpecs() {
 		super.setFrameSpecs();
 		// Set the Frame's height and width.
-		getFrame().setSize(R.dimens.FRAME_WIDTH, R.dimens.FRAME_HEIGHT);
+		getFrame().setSize(R.dimens.CODER_FRAME_WIDTH, R.dimens.CODER_FRAME_HEIGHT);
 	}
 
 	@Override
