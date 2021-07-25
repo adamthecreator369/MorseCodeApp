@@ -19,6 +19,7 @@ public class EncoderDecoderTool extends ApplicationWindow {
 	private DecoderLayout layout;
 	private MorseCoder morseCoder;
 
+
 	// Constructor
 	public EncoderDecoderTool() {
 		// Create a new Frame.
@@ -46,10 +47,12 @@ public class EncoderDecoderTool extends ApplicationWindow {
 	@Override
 	protected void setFrameSpecs() {
 		super.setFrameSpecs();
+		// Set the Frame's size and location. 
+		getFrame().setLocation(340, 0);
 		// Set the Frame's height and width.
 		getFrame().setSize(R.dimens.CODER_FRAME_WIDTH, R.dimens.CODER_FRAME_HEIGHT);
 	}
-
+	
 	@Override
 	protected void performClickActions() {
 		for (JButton btn : layout.getBtns()) {
@@ -160,7 +163,12 @@ public class EncoderDecoderTool extends ApplicationWindow {
 		// as though the program has froze until after the demo has completed.
 		Thread thread = new Thread() {
 			public void run() {
+				// Remove any text that may be contained in the JTextArea before starting to append
+				// the demo text to it. 
+				layout.setMessageText(null);
+				// Keep the user from manipulating the text while the demo is being played.
 				layout.getMsgTxtArea().setEditable(false);
+				// Disable buttons so that the demo will perform properly without interruption. 
 				layout.disableBtns();
 				// Wait one second before starting the demo.
 				pause(1000);
