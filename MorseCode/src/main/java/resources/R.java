@@ -3,7 +3,9 @@
 package main.java.resources;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public final class R {
 
@@ -61,29 +63,31 @@ public final class R {
 	}
 
 	public static final class dimens {
+		public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		public static final int screenHeight = (int) screenSize.getHeight();
 		public static final int DIFFERENTIAL = 10;
-		public static final int CODER_FRAME_HEIGHT = 677; 
-		public static final int CODER_FRAME_WIDTH = 723; 
+		public static final int CODER_FRAME_HEIGHT = (int) (screenHeight <= 677 ? 541 : 677);
+		public static final int CODER_FRAME_WIDTH = 723;
 		public static final int TITLE_HEIGHT = 52;
 		public static final int TOOL_TITLE_WIDTH = 331;
-		public static final int TOOL_TITLE_X = 193; 
-		public static final int TOOL_TITLE_Y = 32;
-		public static final int TOOL_LABEL_X = 65; 
-		public static final int TOOL_MSG_LABEL_Y = 86; 
+		public static final int TOOL_TITLE_X = 193;
+		public static final int TOOL_TITLE_Y = (int) (screenHeight <= 677 ? 32 - (32 * .2) : 32);
+		public static final int TOOL_LABEL_X = 65;
+		public static final int TOOL_MSG_LABEL_Y = (int) (screenHeight <= 677 ? 82 - (86 * .2) : 86);
 		public static final int LABEL_WIDTH = 450;
-		public static final int LABEL_HEIGHT = 46;  
-		public static final int CONV_LABEL_Y = 363;   
-		public static final int TOOL_TXT_AREA_X = 65; 
-		public static final int TOOL_MSG_AREA_Y = 120; 
+		public static final int LABEL_HEIGHT = 46;
+		public static final int CONV_LABEL_Y = (int) (screenHeight <= 677 ? 359 - (363 * .2) : 363);
+		public static final int TOOL_TXT_AREA_X = 65;
+		public static final int TOOL_MSG_AREA_Y = (int) (screenHeight <= 677 ? 120 - (120 * .2) : 120);
 		public static final int TOOL_TXT_AREA_WIDTH = 590;
-		public static final int TOOL_TXT_AREA_HEIGHT = 192; 
-		public static final int CONV_AREA_Y = 396; 
+		public static final int TOOL_TXT_AREA_HEIGHT = (int) (screenHeight <= 677 ? 192 - (192 * .2) : 192);
+		public static final int CONV_AREA_Y = (int) (screenHeight <= 677 ? 396 - (396 * .2) : 396);
 		public static final int BTN_WIDTH = 147;
 		public static final int BTN_HEIGHT = 40;
 		public static final int BTN_SPACING = BTN_WIDTH + DIFFERENTIAL;
-		public static final int BTN_X = 194;  // 294
-		public static final int BTN_Y = 320; 
-		public static final int DEMO_BTN_Y = 596; 
+		public static final int BTN_X = 194;
+		public static final int BTN_Y = (int) (screenHeight <= 677 ? 320 - (320 * .2) : 320);
+		public static final int DEMO_BTN_Y = (int) (screenHeight <= 677 ? 596 - (596 * .2) : 596);
 		public static final int MENU_FRAME_WIDTH = 581;
 		public static final int MENU_TITLE_WIDTH = 135;
 		public static final int MENU_TITLE_X = 221;
@@ -92,9 +96,9 @@ public final class R {
 		public static final int MENU_FRAME_HEIGHT = 152;
 		public static final int CHAT_FRAME_WIDTH = 810;
 		public static final int CHAT_FRAME_HEIGHT = 500;
-		public static final int CHAT_TITLE_X = 20; 
+		public static final int CHAT_TITLE_X = 20;
 		public static final int CHAT_BTN_Y = 199;
-		public static final int CHAT_BTN_X = 16; 
+		public static final int CHAT_BTN_X = 16;
 		public static final int CHAT_LABEL_Y = 20;
 		public static final int CHAT_AREA_WIDTH = 450;
 		public static final int CHAT_AREA_HEIGHT = 200;
