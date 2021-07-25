@@ -88,6 +88,7 @@ public final class R {
 		public static final int BTN_X = 194;
 		public static final int BTN_Y = (int) (screenHeight <= 677 ? 320 - (320 * .2) : 320);
 		public static final int DEMO_BTN_Y = (int) (screenHeight <= 677 ? 596 - (596 * .2) : 596);
+		public static final int RADIO_WIDTH = 137;
 		public static final int MENU_FRAME_WIDTH = 581;
 		public static final int MENU_TITLE_WIDTH = 135;
 		public static final int MENU_TITLE_X = 221;
@@ -115,7 +116,7 @@ public final class R {
 		public static final int CONNECT_BTN_Y = 222;
 		public static final int CONNECT_BTN_X = 17;
 		public static final int GUEST_RADIO_X = 201;
-		public static final int HOST_RADIO_Y = 184;
+		public static final int RADIO_Y = 194;
 		public static final int HOST_RADIO_X = 59;
 		public static final int PORT_FIELD_Y = 152;
 		public static final int PORT_LABEL_Y = 147;
