@@ -1,4 +1,5 @@
 /* Created by Neha Metlapalli on 07/25/2021 */
+
 /* Class is a modified version of the code from this source: https://stackoverflow.com/a/14627771 */
 
 package main.java.util;
@@ -27,8 +28,8 @@ public class CustomButton extends JButton {
         super(text);
         super.setContentAreaFilled(false);
         setBackground(R.color.WHITE);
-        setHoverBackgroundColor(Color.decode("#f5f7f6"));
-        setPressedBackgroundColor(Color.decode("#ededed"));
+        setHoverBackgroundColor(R.color.BTN_HOVER);
+        setPressedBackgroundColor(R.color.MID_GRAY);
         setBorder(new LineBorder(R.color.WHITE));
     }
 

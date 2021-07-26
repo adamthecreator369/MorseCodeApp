@@ -1,5 +1,5 @@
 /* Created by Adam Jost on 07/20/2021 */
-/* Updated by Neha Metlapalli on 07/25/2021 */
+/* Updated by Neha Metlapalli on 07/25/2021 (changed to CustomButton from JButton) */
 
 package main.java.windows;
 
@@ -117,7 +117,6 @@ public class EncoderDecoderTool extends ApplicationWindow {
 								layout.setConversionText(R.string.ERROR_MORSE_CODE);
 							}
 						}
-
 					} else if (sender.equals(layout.getResetBtn())) {
 						// If the reset button is clicked then remove
 						// all text from both of the JTextAreas.
@@ -138,20 +137,18 @@ public class EncoderDecoderTool extends ApplicationWindow {
 	 * closes the frame after a ten second count down. This only occurs when the
 	 * input data file is not found.
 	 */
-	// Make this a method in the abstract class.. get layout data field to work.
-	// Make setText method in each layout to work with this method.
-	// Somehow figure out how to keep from duplicating this method like i currently
-	// am.
 	private void destroy() {
 		Thread thread = new Thread() {
 			public void run() {
 				// Disable layout components since the system is down.
 				layout.disableBtns();
 				layout.getMsgTxtArea().setEnabled(false);
+				// Display an error message containing a count down until Frame closure.
 				for (int i = 10; i > 0; i--) {
 					layout.setConversionText(R.string.ERROR_SYSTEM_DOWN + i + R.string.SECONDS);
 					pause(1000);
 				}
+				// Close.
 				getFrame().dispose();
 			}
 		};

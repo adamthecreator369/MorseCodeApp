@@ -26,8 +26,8 @@ public class CustomIcon implements Icon {
     
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
-    	g.setColor(color); // Set the color of the radio button icon
-    	g.fillOval(x, y, getIconWidth(), getIconHeight()); // Now fill an oval with that color
+    	g.setColor(color); // Set the color of the radio button icon.
+    	g.fillOval(x, y, getIconWidth(), getIconHeight()); // Now fill an oval with that color.
     	// Change the color now to dark gray and create a border around the radio button icon
     	g.setColor(R.color.DARK_GRAY); 
     	g.drawOval(x, y, getIconWidth(), getIconHeight());

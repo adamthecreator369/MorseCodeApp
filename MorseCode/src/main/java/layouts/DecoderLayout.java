@@ -1,5 +1,8 @@
 /* Created by Adam Jost on 07/20/2021 */
-/* Updated by Neha Metlapalli on 07/25/2021 */
+/* Updated by Neha Metlapalli on 07/25/2021 to include CustomButton items. */
+/* Updated by Adam Jost on 07/26/2021. Addition of customJScrollPane() method calls to 
+ * when initializing JScrollPanes, and spaceBtnsEvenly() method.
+ */
 
 package main.java.layouts;
 
@@ -104,7 +107,7 @@ public class DecoderLayout extends Layout {
 	 * @return: a CustomButton array.
 	 */
 	public CustomButton[] getBtns() {
-		return new CustomButton[] { encodeBtn, decodeBtn, demoBtn, resetBtn };
+		return new CustomButton[] { encodeBtn, decodeBtn, resetBtn, demoBtn };
 	}
 
 	/** Enables all buttons of the layout. */
@@ -155,8 +158,8 @@ public class DecoderLayout extends Layout {
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
 		conversionTxtArea.setBounds(R.dimens.TOOL_TXT_AREA_X, R.dimens.CONV_AREA_Y, R.dimens.TOOL_TXT_AREA_WIDTH,
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
-		mScrollPane = new JScrollPane(msgTxtArea);
-		cScrollPane = new JScrollPane(conversionTxtArea);
+		mScrollPane = customJScrollPane(msgTxtArea);
+		cScrollPane = customJScrollPane(conversionTxtArea);
 		setComponents(new JComponent[] { titleLabel, msgLabel, conversionLabel, encodeBtn, decodeBtn, demoBtn, resetBtn, mScrollPane,
 				cScrollPane });
 	}
@@ -186,10 +189,8 @@ public class DecoderLayout extends Layout {
 		cScrollPane.setBounds(R.dimens.TOOL_TXT_AREA_X, R.dimens.CONV_AREA_Y, R.dimens.TOOL_TXT_AREA_WIDTH,
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
 		// Button bounds
-		encodeBtn.setBounds(R.dimens.BTN_X, R.dimens.BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
-		decodeBtn.setBounds(R.dimens.BTN_X + R.dimens.BTN_SPACING, R.dimens.BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
+		spaceBtnsEvenly(getBtns(), R.dimens.BTN_X, R.dimens.BTN_Y);
 		demoBtn.setBounds(R.dimens.BTN_X + R.dimens.BTN_SPACING * 2, R.dimens.DEMO_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
-		resetBtn.setBounds(R.dimens.BTN_X + R.dimens.BTN_SPACING * 2, R.dimens.BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		// Add scroll bars to the two JScrollPanes.
 		mScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		cScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

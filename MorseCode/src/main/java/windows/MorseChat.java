@@ -62,7 +62,7 @@ public class MorseChat extends ApplicationWindow {
 		// Closes the application window after a count down
 		// if the data file is found to be non-existent.
 		if (!morseCoder.buildMorseTree()) {
-			destroyIfNoData();
+			destroy();
 		}
 		// Key listeners and actions to execute when
 		// a key event occurs.
@@ -420,14 +420,14 @@ public class MorseChat extends ApplicationWindow {
 	 * closes the frame after a ten second count down. This only occurs when the
 	 * input data file is not found.
 	 */
-	private void destroyIfNoData() {
+	private void destroy() {
 		Thread thread = new Thread() {
 			public void run() {
 				// Disable components since the system is down.
 				layout.connectionSettings();
 				layout.getDisconnectBtn().setEnabled(false);
 				layout.getMsgTxtArea().setEditable(false);
-				// Disable an error message containing a count down until Frame closure.
+				// Display an error message containing a count down until Frame closure.
 				for (int i = 10; i > 0; i--) {
 					layout.getMsgTxtArea().setText(R.string.ERROR_SYSTEM_DOWN + i + R.string.SECONDS);
 					pause(1000);

@@ -1,10 +1,12 @@
 /* Created by Adam Jost on 07/21/2021 */
-/* Updated by Neha Metlapalli on 07/25/2021 */
+/* Updated by Neha Metlapalli on 07/25/2021. Addition of CustomButton items. */
+/* Updated by Adam Jost on 07/26/2021. Addition of customJScrollPane() method calls to 
+ * when initializing JScrollPanes.
+ */
 
 package main.java.layouts;
 
 import java.awt.Frame;
-
 import java.awt.Insets;
 
 import javax.swing.ButtonGroup;
@@ -59,7 +61,7 @@ public class ChatLayout extends Layout {
 	
 	/** Gets and returns the JRadioButton, hostRadio
 	 * 
-	 * @return: the host radio button
+	 * @return: the host radio button.
 	 */
 	public JRadioButton getHostRadio() {
 		return hostRadio;
@@ -67,7 +69,7 @@ public class ChatLayout extends Layout {
 	
 	/** Gets and returns the JRadioButton, guestRadio
 	 * 
-	 * @return: the guest radio button
+	 * @return: the guest radio button.
 	 */
 	public JRadioButton getGuestRadio() {
 		return guestRadio;
@@ -82,6 +84,10 @@ public class ChatLayout extends Layout {
 		return btns;
 	}
 
+	/** Gets and returns the JTextArea, msgTxtArea.
+	 * 
+	 * @return: the JTextArea for input messages.
+	 */
 	public JTextArea getMsgTxtArea() {
 		return msgTxtArea;
 	}
@@ -217,8 +223,8 @@ public class ChatLayout extends Layout {
 		disconnectBtn = new CustomButton(R.string.DISCONNECT);
 		msgTxtArea = new JTextArea();
 		chatTxtArea = new JTextArea();
-		msgScrollPane = new JScrollPane(msgTxtArea);
-		chatScrollPane = new JScrollPane(chatTxtArea);
+		msgScrollPane = customJScrollPane(msgTxtArea);
+		chatScrollPane = customJScrollPane(chatTxtArea);
 		hostGuestGroup = new ButtonGroup();
 		hostGuestGroup.add(hostRadio);
 		hostGuestGroup.add(guestRadio);
@@ -239,8 +245,8 @@ public class ChatLayout extends Layout {
 		portField.setBounds(R.dimens.CHAT_FIELD_X, R.dimens.PORT_FIELD_Y, R.dimens.CHAT_FIELD_WIDTH, R.dimens.CHAT_FIELD_HEIGHT);
 		connectionLabel.setBounds(R.dimens.CONN_LABEL_X, R.dimens.CONN_LABEL_Y, R.dimens.LABEL_WIDTH, R.dimens.LABEL_HEIGHT);
 		connectionColor.setBounds(R.dimens.CONN_COLOR_X, R.dimens.CONN_COLOR_Y, R.dimens.COLOR_WIDTH, R.dimens.COLOR_HEIGHT);
-		hostRadio.setBounds(R.dimens.HOST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, 20);
-		guestRadio.setBounds(R.dimens.GUEST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, 20);
+		hostRadio.setBounds(R.dimens.HOST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, R.dimens.RADIO_HEIGHT);
+		guestRadio.setBounds(R.dimens.GUEST_RADIO_X, R.dimens.RADIO_Y, R.dimens.RADIO_WIDTH, R.dimens.RADIO_HEIGHT);
 		connectBtn.setBounds(R.dimens.CONNECT_BTN_X, R.dimens.CONNECT_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		disconnectBtn.setBounds(R.dimens.DISCONNECT_BTN_X, R.dimens.DISCONNECT_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		chatLabel.setBounds(R.dimens.CHAT_AREA_X, R.dimens.CHAT_LABEL_Y, R.dimens.LABEL_WIDTH, R.dimens.LABEL_HEIGHT);
@@ -271,9 +277,11 @@ public class ChatLayout extends Layout {
 		// Disable the disconnect button.
 		disconnectBtn.setEnabled(false);
 		connectionColor.setEditable(false);
+		// Initial color of the connectionColor square.
 		connectionColor.setBackground(R.color.ORANGE);
 		hostRadio.setBackground(null);
 		guestRadio.setBackground(null);
+		// Remove the border of the following items. 
 		ipField.setBorder(null);
 		portField.setBorder(null);
 		connectionColor.setBorder(null);

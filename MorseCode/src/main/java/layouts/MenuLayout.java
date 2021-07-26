@@ -58,9 +58,7 @@ public class MenuLayout extends Layout {
 	@Override
 	protected void componentSettings() {
 		titleLabel.setBounds(R.dimens.MENU_TITLE_X, R.dimens.TOOL_TITLE_Y, R.dimens.MENU_TITLE_WIDTH, R.dimens.TITLE_HEIGHT);
-		chatBtn.setBounds(R.dimens.MENU_BTN_X, R.dimens.MENU_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
-		decoderBtn.setBounds(R.dimens.MENU_BTN_X + R.dimens.BTN_SPACING, R.dimens.MENU_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
-		bothBtn.setBounds(R.dimens.MENU_BTN_X + R.dimens.BTN_SPACING * 2, R.dimens.MENU_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);	
+		spaceBtnsEvenly(getBtns(), R.dimens.MENU_BTN_X, R.dimens.MENU_BTN_Y);
 		setFont();
 	}
 
@@ -68,4 +66,5 @@ public class MenuLayout extends Layout {
 	protected void setFont() {
 		titleLabel.setFont(R.font.LARGE);
 	}
+
 }

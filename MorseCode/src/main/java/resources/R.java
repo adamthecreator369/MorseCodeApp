@@ -117,6 +117,7 @@ public final class R {
 		public static final int CONNECT_BTN_X = 17;
 		public static final int GUEST_RADIO_X = 201;
 		public static final int RADIO_Y = 194;
+		public static final int RADIO_HEIGHT = 20;
 		public static final int HOST_RADIO_X = 59;
 		public static final int PORT_FIELD_Y = 152;
 		public static final int PORT_LABEL_Y = 147;
@@ -147,6 +148,10 @@ public final class R {
 		public static final Color GREEN = Color.green;
 		public static final Color YELLOW = Color.YELLOW;
 		public static final Color WHITE = Color.WHITE;
+		public static final Color BTN_HOVER = Color.decode("#F5F7F6");
+		public static final Color MID_GRAY = Color.decode("#EDEDED");
+		public static final Color THUMB = Color.decode("#BFBFBF");
+		public static final Color THUMB_HIGHLIGHT = Color.decode("#FDFDFD");
 	}
 
 	public static final class status {
