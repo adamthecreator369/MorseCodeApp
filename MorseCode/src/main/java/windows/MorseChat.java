@@ -321,12 +321,13 @@ public class MorseChat extends ApplicationWindow {
 	
 	/** ActionListeners for the radio buttons of the Frame's layout. */
 	private void radioActionListeners() {
-		// Change radio button format
+		// Change radio button icon's format
 		CustomIcon unselected = new CustomIcon();
 		CustomIcon selected = new CustomIcon(R.color.DARK_GRAY);
 		layout.getHostRadio().setIcon(selected);
 		layout.getGuestRadio().setIcon(unselected);
 		
+		// Adds an ActionListener to the radio buttons to see if either is selected and change the icons depending on which radio button is selected
 		layout.getHostRadio().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 		        layout.getHostRadio().setIcon(selected);
