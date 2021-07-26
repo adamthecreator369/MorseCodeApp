@@ -17,8 +17,8 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.swing.JButton;
-
+import main.java.util.CustomButton;
+import main.java.util.CustomIcon;
 import main.java.layouts.ChatLayout;
 import main.java.resources.R;
 import main.java.util.MessageStrings;
@@ -66,6 +66,8 @@ public class MorseChat extends ApplicationWindow {
 		// Key listeners and actions to execute when
 		// a key event occurs.
 		performKeyActions();
+		// ActionListeners for the radio buttons.
+		radioActionListeners();
 	}
 
 	/**
@@ -94,13 +96,13 @@ public class MorseChat extends ApplicationWindow {
 	@Override
 	protected void performClickActions() {
 		// Add a ActionListener to each button of the Frame's layout.
-		for (JButton btn : layout.getBtns()) {
+		for (CustomButton btn : layout.getBtns()) {
 			btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// Cast sender of event from object to JButton
 					// since we know that is what it is and what we
 					// need it to be.
-					JButton sender = (JButton) e.getSource();
+					CustomButton sender = (CustomButton) e.getSource();
 
 					if (sender.equals(layout.getConnectBtn())) {
 						// When the connect button is pressed changed the status to
@@ -313,6 +315,28 @@ public class MorseChat extends ApplicationWindow {
 				// This method does not apply and therefore
 				// remains unimplemented.
 			}
+		});
+	}
+	
+	/** ActionListeners for the radio buttons of the Frame's layout. */
+	private void radioActionListeners() {
+		// Change radio button format
+		CustomIcon unselected = new CustomIcon();
+		CustomIcon selected = new CustomIcon(R.color.DARK_GRAY);
+		layout.getHostRadio().setIcon(selected);
+		layout.getGuestRadio().setIcon(unselected);
+		
+		layout.getHostRadio().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+		        layout.getHostRadio().setIcon(selected);
+		        layout.getGuestRadio().setIcon(unselected);
+		    }
+		});
+		layout.getGuestRadio().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				layout.getGuestRadio().setIcon(selected);
+		        layout.getHostRadio().setIcon(unselected);
+		    }
 		});
 	}
 

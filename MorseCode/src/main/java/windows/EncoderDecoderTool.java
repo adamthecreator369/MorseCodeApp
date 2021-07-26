@@ -6,7 +6,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import main.java.util.CustomButton;
 
 import main.java.layouts.DecoderLayout;
 import main.java.resources.R;
@@ -55,13 +55,13 @@ public class EncoderDecoderTool extends ApplicationWindow {
 	
 	@Override
 	protected void performClickActions() {
-		for (JButton btn : layout.getBtns()) {
+		for (CustomButton btn : layout.getBtns()) {
 			btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// Cast sender of event from object to JButton
 					// since we know that is what it is and what we
 					// need it to be.
-					JButton sender = (JButton) e.getSource();
+					CustomButton sender = (CustomButton) e.getSource();
 
 					// Empty the text area of any text.
 					layout.setConversionText(null);

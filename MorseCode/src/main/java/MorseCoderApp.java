@@ -8,8 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import main.java.windows.MainMenu;
 
 public class MorseCoderApp {
-	public static void main (String[] args) {
-		// Ensure the application looks the same across all platforms.
+	public static void main (String[] args) {	
 		try {
 			UIManager.setLookAndFeel(
 			        UIManager.getCrossPlatformLookAndFeelClassName());
@@ -17,7 +16,7 @@ public class MorseCoderApp {
 				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-		// Open the applications menu. 
+		// Open the app menu. 
 		new MainMenu();
 	}
 }

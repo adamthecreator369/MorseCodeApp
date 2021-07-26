@@ -4,17 +4,18 @@ package main.java.layouts;
 
 import java.awt.Frame;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+
+import main.java.util.CustomButton;
 
 import main.java.resources.R;
 
 public class MenuLayout extends Layout {
 	
 	private JLabel titleLabel;
-	private JButton chatBtn, decoderBtn, bothBtn;
-	private JButton[] btns;
+	private CustomButton chatBtn, decoderBtn, bothBtn;
+	private CustomButton[] btns;
 	
 	public MenuLayout(Frame frame) {
 		initComponents();
@@ -23,33 +24,33 @@ public class MenuLayout extends Layout {
 		show();
 	}
 	
-	/** Gets and returns the JButton, chatBtn. */
-	public JButton getChatBtn() {
+	/** Gets and returns the CustomButton, chatBtn. */
+	public CustomButton getChatBtn() {
 		return chatBtn;
 	}
 	
-	/** Gets and returns the JButton, decoderBtn. */
-	public JButton getDecoderBtn() {
+	/** Gets and returns the CustomButton, decoderBtn. */
+	public CustomButton getDecoderBtn() {
 		return decoderBtn;
 	}
 	
-	/** Gets and returns the JButton, bothBtn. */
-	public JButton getBothBtn() {
+	/** Gets and returns the CustomButton, bothBtn. */
+	public CustomButton getBothBtn() {
 		return bothBtn;
 	}
 	
-	/** Gets and returns a JButton[] containing both layout buttons. */
-	public JButton[] getBtns() {
+	/** Gets and returns a CustomButton[] containing both layout buttons. */
+	public CustomButton[] getBtns() {
 		return btns;
 	}
 	
 	@Override
 	protected void initComponents() {
 		titleLabel = new JLabel(R.string.MENU_TITLE);
-		chatBtn = new JButton(R.string.OPEN_CHAT_BTN);
-		decoderBtn = new JButton(R.string.OPEN_DECODER_BTN);
-		bothBtn = new JButton(R.string.OPEN_BOTH_BTN);
-		btns = new JButton[] { chatBtn, decoderBtn, bothBtn };
+		chatBtn = new CustomButton(R.string.OPEN_CHAT_BTN);
+		decoderBtn = new CustomButton(R.string.OPEN_DECODER_BTN);
+		bothBtn = new CustomButton(R.string.OPEN_BOTH_BTN);
+		btns = new CustomButton[] { chatBtn, decoderBtn, bothBtn };
 		setComponents(new JComponent[] { titleLabel, chatBtn, decoderBtn, bothBtn });
 	}
 
@@ -60,17 +61,10 @@ public class MenuLayout extends Layout {
 		decoderBtn.setBounds(R.dimens.MENU_BTN_X + R.dimens.BTN_SPACING, R.dimens.MENU_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);
 		bothBtn.setBounds(R.dimens.MENU_BTN_X + R.dimens.BTN_SPACING * 2, R.dimens.MENU_BTN_Y, R.dimens.BTN_WIDTH, R.dimens.BTN_HEIGHT);	
 		setFont();
-		for (JButton btn : getBtns()) {
-			btn.setOpaque(true);
-			btn.setBackground(R.color.WHITE);
-		}
 	}
 
 	@Override
 	protected void setFont() {
 		titleLabel.setFont(R.font.LARGE);
-		for (JButton btn : getBtns()) {
-			btn.setFont(R.font.BTN);
-		}
 	}
 }

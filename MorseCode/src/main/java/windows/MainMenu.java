@@ -6,10 +6,10 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
 import main.java.layouts.MenuLayout;
 import main.java.resources.R;
+
+import main.java.util.CustomButton;
 
 public class MainMenu extends ApplicationWindow {
 
@@ -36,13 +36,13 @@ public class MainMenu extends ApplicationWindow {
 
 	@Override
 	protected void performClickActions() {
-		for (JButton btn : layout.getBtns()) {
+		for (CustomButton btn : layout.getBtns()) {
 			btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// Cast sender of event from object to JButton
 					// since we know that is what it is and what we
 					// need it to be.
-					JButton sender = (JButton) e.getSource();
+					CustomButton sender = (CustomButton) e.getSource();
 
 					// If the Morse Chat button is pushed then open Morse Chat.
 					if (sender.equals(layout.getChatBtn())) {

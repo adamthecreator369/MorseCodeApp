@@ -3,10 +3,10 @@
 package main.java.layouts;
 
 import java.awt.Frame;
+
 import java.awt.Insets;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import main.java.util.CustomButton;
 import main.java.resources.R;
 
 public class ChatLayout extends Layout {
@@ -24,10 +25,10 @@ public class ChatLayout extends Layout {
 	private JTextField ipField, portField, connectionColor;
 	private JRadioButton hostRadio, guestRadio;
 	private ButtonGroup hostGuestGroup;
-	private JButton connectBtn, disconnectBtn;
+	private CustomButton connectBtn, disconnectBtn;
 	private JTextArea msgTxtArea, chatTxtArea;
 	private JScrollPane msgScrollPane, chatScrollPane;
-	private JButton[] btns;
+	private CustomButton[] btns;
 
 	// Constructor
 	public ChatLayout(Frame frame) {
@@ -38,29 +39,45 @@ public class ChatLayout extends Layout {
 	}
 
 	/**
-	 * Gets and returns the JButton, connectBtn.
+	 * Gets and returns the CustomButton, connectBtn.
 	 * 
 	 * @return: the connect button.
 	 */
-	public JButton getConnectBtn() {
+	public CustomButton getConnectBtn() {
 		return connectBtn;
 	}
 
 	/**
-	 * Gets and returns the JButton, disconnectBtn.
+	 * Gets and returns the CustomButton, disconnectBtn.
 	 * 
 	 * @return: the disconnect button.
 	 */
-	public JButton getDisconnectBtn() {
+	public CustomButton getDisconnectBtn() {
 		return disconnectBtn;
+	}
+	
+	/** Gets and returns the JRadioButton, hostRadio
+	 * 
+	 * @return: the host radio button
+	 */
+	public JRadioButton getHostRadio() {
+		return hostRadio;
+	}
+	
+	/** Gets and returns the JRadioButton, guestRadio
+	 * 
+	 * @return: the guest radio button
+	 */
+	public JRadioButton getGuestRadio() {
+		return guestRadio;
 	}
 
 	/**
-	 * Gets and returns the JButton[], btns.
+	 * Gets and returns the CustomButton[], btns.
 	 * 
 	 * @return: the buttons array.
 	 */
-	public JButton[] getBtns() {
+	public CustomButton[] getBtns() {
 		return btns;
 	}
 
@@ -76,7 +93,7 @@ public class ChatLayout extends Layout {
 	public String getMsgText() {
 		return msgTxtArea.getText();
 	}
-
+	
 	/**
 	 * Returns the information in the ipField.
 	 * 
@@ -195,8 +212,8 @@ public class ChatLayout extends Layout {
 		connectionColor = new JTextField(1);
 		hostRadio = new JRadioButton(R.string.HOST, true);
 		guestRadio = new JRadioButton(R.string.GUEST, false);
-		connectBtn = new JButton(R.string.CONNECT);
-		disconnectBtn = new JButton(R.string.DISCONNECT);
+		connectBtn = new CustomButton(R.string.CONNECT);
+		disconnectBtn = new CustomButton(R.string.DISCONNECT);
 		msgTxtArea = new JTextArea();
 		chatTxtArea = new JTextArea();
 		msgScrollPane = new JScrollPane(msgTxtArea);
@@ -204,7 +221,7 @@ public class ChatLayout extends Layout {
 		hostGuestGroup = new ButtonGroup();
 		hostGuestGroup.add(hostRadio);
 		hostGuestGroup.add(guestRadio);
-		btns = new JButton[] { connectBtn, disconnectBtn };
+		btns = new CustomButton[] { connectBtn, disconnectBtn };
 		setComponents(new JComponent[] { titleLabel, subTitleLabel, chatLabel, msgLabel, ipLabel, portLabel, ipField,
 				portField, hostRadio, guestRadio, connectBtn, disconnectBtn, msgScrollPane, chatScrollPane, connectionLabel,
 				connectionColor });
@@ -234,7 +251,7 @@ public class ChatLayout extends Layout {
 		// Disallow editing of the chat area.
 		// Sent and received messages will appear here automatically.
 		chatTxtArea.setEditable(false);
-		// Wrap text and add padding to the text areas.
+		// Wrap text and add insets (padding) to the text areas.
 		msgTxtArea.setLineWrap(true);
 		msgTxtArea.setMargin(new Insets(10, 12, 10, 12));
 		chatTxtArea.setLineWrap(true);
@@ -256,12 +273,6 @@ public class ChatLayout extends Layout {
 		connectionColor.setBackground(R.color.ORANGE);
 		hostRadio.setBackground(null);
 		guestRadio.setBackground(null);
-		hostRadio.setFocusable(false);
-		guestRadio.setFocusable(false);
-		connectBtn.setOpaque(true);
-		disconnectBtn.setOpaque(true);
-		connectBtn.setBackground(R.color.WHITE);
-		disconnectBtn.setBackground(R.color.WHITE);
 		ipField.setBorder(null);
 		portField.setBorder(null);
 		connectionColor.setBorder(null);
@@ -281,8 +292,5 @@ public class ChatLayout extends Layout {
 		connectionLabel.setForeground(R.color.DARK_GRAY);
 		hostRadio.setFont(R.font.SMALL);
 		guestRadio.setFont(R.font.SMALL);
-		connectBtn.setFont(R.font.SMALL);
-		connectBtn.setFont(R.font.BTN);
-		disconnectBtn.setFont(R.font.BTN);
 	}
 }

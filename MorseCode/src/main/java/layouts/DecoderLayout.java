@@ -5,21 +5,23 @@ package main.java.layouts;
 import java.awt.Frame;
 import java.awt.Insets;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import main.java.util.CustomButton;
+
 import main.java.resources.R;
+
 
 public class DecoderLayout extends Layout {
 
 	// Data fields
 	private JLabel titleLabel, msgLabel, conversionLabel;
 	private JTextArea msgTxtArea, conversionTxtArea;
-	private JButton encodeBtn, decodeBtn, resetBtn, demoBtn;
+	private CustomButton encodeBtn, decodeBtn, resetBtn, demoBtn;
 	private JScrollPane mScrollPane, cScrollPane;
 
 	// Constructor
@@ -60,60 +62,60 @@ public class DecoderLayout extends Layout {
 	}
 
 	/**
-	 * Gets and returns the JButton, encodeBtn.
+	 * Gets and returns the CustomButton, encodeBtn.
 	 * 
 	 * @return: the encode button.
 	 */
-	public JButton getEncodeBtn() {
+	public CustomButton getEncodeBtn() {
 		return encodeBtn;
 	}
 	
 	/**
-	 * Gets and returns the JButton, decodeBtn.
+	 * Gets and returns the CustomButton, decodeBtn.
 	 * 
 	 * @return: the decode button.
 	 */
-	public JButton getDecodeBtn() {
+	public CustomButton getDecodeBtn() {
 		return decodeBtn;
 	}
 	
 	/**
-	 * Gets and returns the JButton, demoBtn.
+	 * Gets and returns the CustomButton, demoBtn.
 	 * 
 	 * @return: the demo button.
 	 */
-	public JButton getDemoBtn() {
+	public CustomButton getDemoBtn() {
 		return demoBtn;
 	}
 
 	/**
-	 * Gets and returns the JButton, resetBtn.
+	 * Gets and returns the CustomButton, resetBtn.
 	 * 
 	 * @return: the reset button.
 	 */
-	public JButton getResetBtn() {
+	public CustomButton getResetBtn() {
 		return resetBtn;
 	}
 
 	/**
-	 * Gets and returns the array containing all JButtons from this layout.
+	 * Gets and returns the array containing all CustomButtons from this layout.
 	 * 
-	 * @return: a JButton array.
+	 * @return: a CustomButton array.
 	 */
-	public JButton[] getBtns() {
-		return new JButton[] { encodeBtn, decodeBtn, demoBtn, resetBtn };
+	public CustomButton[] getBtns() {
+		return new CustomButton[] { encodeBtn, decodeBtn, demoBtn, resetBtn };
 	}
 
 	/** Enables all buttons of the layout. */
 	public void enableBtns() {
-		for (JButton btn : getBtns()) {
+		for (CustomButton btn : getBtns()) {
 			btn.setEnabled(true);
 		}
 	}
 
 	/** Disables all buttons of the layout. */
 	public void disableBtns() {
-		for (JButton btn : getBtns()) {
+		for (CustomButton btn : getBtns()) {
 			btn.setEnabled(false);
 		}
 	}
@@ -143,10 +145,10 @@ public class DecoderLayout extends Layout {
 		conversionLabel = new JLabel(R.string.ENDECODE_LABEL);
 		msgTxtArea = new JTextArea();
 		conversionTxtArea = new JTextArea();
-		encodeBtn = new JButton(R.string.ENCODE_BTN_TXT);
-		decodeBtn = new JButton(R.string.DECODE_BTN_TXT);
-		demoBtn = new JButton(R.string.DEMO_BTN_TXT);
-		resetBtn = new JButton(R.string.RESET_BTN);
+		encodeBtn = new CustomButton(R.string.ENCODE_BTN_TXT);
+		decodeBtn = new CustomButton(R.string.DECODE_BTN_TXT);
+		demoBtn = new CustomButton(R.string.DEMO_BTN_TXT);
+		resetBtn = new CustomButton(R.string.RESET_BTN);
 		// JTextArea bounds must be set here before instantiate their JScrollPanes.
 		msgTxtArea.setBounds(R.dimens.TOOL_TXT_AREA_X, R.dimens.TOOL_MSG_AREA_Y, R.dimens.TOOL_TXT_AREA_WIDTH,
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
@@ -190,11 +192,6 @@ public class DecoderLayout extends Layout {
 		// Add scroll bars to the two JScrollPanes.
 		mScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		cScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		for (JButton btn : getBtns()) {
-			btn.setOpaque(true);
-			btn.setBackground(R.color.WHITE);
-			btn.setFont(R.font.BTN);
-		}
 	}
 
 	@Override
