@@ -5,7 +5,7 @@ package main.java;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import main.java.windows.MainMenu;
+import main.java.windows.Menu;
 
 public class MorseCoderApp {
 	public static void main (String[] args) {
@@ -19,6 +19,6 @@ public class MorseCoderApp {
 			e.printStackTrace();
 		}
 		// Open the application menu. 
-		new MainMenu();
+		new Menu();
 	}
 }
