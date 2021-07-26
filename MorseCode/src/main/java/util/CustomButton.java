@@ -28,7 +28,7 @@ public class CustomButton extends JButton {
         setBackground(R.color.WHITE);
         setHoverBackgroundColor(Color.decode("#f5f7f6"));
         setPressedBackgroundColor(Color.decode("#ededed"));
-        setBorder(new LineBorder(R.color.DARK_GRAY));
+        setBorder(new LineBorder(R.color.WHITE));
     }
 
     @Override
