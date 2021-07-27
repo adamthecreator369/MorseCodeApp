@@ -101,9 +101,13 @@ public class MorseEndecoder extends ApplicationWindow {
 							// Encode the message and then decode the encoded message and display both to
 							// the end user.
 							msg = MessageStrings.reduceTextWhiteSpaces(msg);
-							layout.setConversionText(R.string.ENCODE_HEADING + morseCoder.encode(msg)
-									+ R.string.SPACE_BETWEEN + R.string.DECODE_HEADING
-									+ morseCoder.decode(morseCoder.encode(msg)).substring(0, msg.length()));
+							try {
+								layout.setConversionText(R.string.ENCODE_HEADING + morseCoder.encode(msg)
+										+ R.string.SPACE_BETWEEN + R.string.DECODE_HEADING
+										+ morseCoder.decode(morseCoder.encode(msg)).substring(0, msg.length()));
+							} catch (IllegalArgumentException e1) {
+								layout.setConversionText(R.string.ERROR_UNSUPPORTED + msg);
+							}
 						} else if (sender.equals(layout.getDecodeBtn())) {
 							try {
 								// Decode the message and then encode the encoded message and display both to

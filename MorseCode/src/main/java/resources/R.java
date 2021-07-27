@@ -36,7 +36,7 @@ public final class R {
 		public static final String UNRECOGNIZED_CODE = "Unrecognized Morse Code";
 		public static final String MENU_TITLE = "Main Menu";
 		public static final String OPEN_CHAT_BTN = "Morse Chat";
-		public static final String OPEN_DECODER_BTN = "Morse Coder";
+		public static final String OPEN_DECODER_BTN = "Morse Endecoder";
 		public static final String OPEN_BOTH_BTN = "Both Apps";
 		public static final String PORT_EXMPL = "5555";
 		public static final String LOCALHOST = "localhost";

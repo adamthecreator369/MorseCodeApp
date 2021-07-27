@@ -210,6 +210,7 @@ public class MorseCoder {
 		if (hasBadChars) {
 			sb.append(R.string.SPACE_BETWEEN + R.string.ERROR_UNSUPPORTED).append(badChars);
 		}
+		
 		// Return the built String.
 		return sb.toString();
 	}
