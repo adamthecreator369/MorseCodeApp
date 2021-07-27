@@ -11,16 +11,21 @@ import main.java.layouts.MenuLayout;
 import main.java.resources.R;
 
 import main.java.util.CustomButton;
+import main.java.util.MorseCoder;
 
 public class Menu extends ApplicationWindow {
 
 	// Data fields 
 	private MenuLayout layout;
+	private MorseCoder morseCoder;
+	private boolean hasData;
 
 	// Constructor
 	public Menu() {
 		setFrame(new Frame());
 		render();
+		morseCoder = new MorseCoder();
+		hasData = morseCoder.buildMorseTree();
 	}
 
 	@Override
@@ -47,14 +52,14 @@ public class Menu extends ApplicationWindow {
 
 					// If the Morse Chat button is pushed then open Morse Chat.
 					if (sender.equals(layout.getChatBtn())) {
-						new MorseChat();
+						new MorseChat(morseCoder, hasData);
 					} else if (sender.equals(layout.getDecoderBtn())) {
 						// If the Morse Coder button is pushed then open the Morse Endecoder tool. 
-						new MorseEndecoder();
+						new MorseEndecoder(morseCoder, hasData);
 					} else if (sender.equals(layout.getBothBtn())) {
 						// If the both button is pushed then open both of the windows. 
-						new MorseEndecoder();
-						new MorseChat();
+						new MorseEndecoder(morseCoder, hasData);
+						new MorseChat(morseCoder, hasData);
 					}
 				}
 			});

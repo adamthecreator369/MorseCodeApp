@@ -19,13 +19,15 @@ public class MorseEndecoder extends ApplicationWindow {
 	// Data fields
 	private EnDecoderLayout layout;
 	private MorseCoder morseCoder;
+	private boolean hasData;
 
 
 	// Constructor
-	public MorseEndecoder() {
+	public MorseEndecoder(MorseCoder coder, boolean data) {
 		// Create a new Frame.
 		setFrame(new Frame());
-		morseCoder = new MorseCoder();
+		morseCoder = coder;
+		hasData = data;
 		render();
 	}
 	
@@ -34,7 +36,7 @@ public class MorseEndecoder extends ApplicationWindow {
 		super.render();
 		// Closes the application window after a count down
 		// if the data file is found to be non-existent.
-		if (!morseCoder.buildMorseTree()) {
+		if (!hasData) {
 			destroy();
 		}
 	}

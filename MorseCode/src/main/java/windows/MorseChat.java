@@ -40,19 +40,20 @@ public class MorseChat extends ApplicationWindow {
 	private BufferedReader bufferedReader;
 	private BufferedWriter bufferedWriter;
 	private static StringBuffer toSend;
-	private boolean justSentMsg;
+	private boolean justSentMsg, hasData;
 
 	private Thread thread;
 
 	private MorseCoder morseCoder;
 
 	// Constructor
-	public MorseChat() {
+	public MorseChat(MorseCoder coder, boolean data) {
 		setFrame(new Frame());
-		morseCoder = new MorseCoder();
+		morseCoder = coder;
 		toSend = new StringBuffer("");
 		justSentMsg = false;
 		status = R.status.NULL;
+		hasData = data;
 		render();
 	}
 
@@ -61,7 +62,7 @@ public class MorseChat extends ApplicationWindow {
 		super.render();
 		// Closes the application window after a count down
 		// if the data file is found to be non-existent.
-		if (!morseCoder.buildMorseTree()) {
+		if (!hasData) {
 			destroy();
 		}
 		// Key listeners and actions to execute when
