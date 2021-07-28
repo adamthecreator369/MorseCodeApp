@@ -261,12 +261,9 @@ public class MorseChat extends ApplicationWindow {
 					try {
 						// If the input message is proven to be Morse Code.
 						if (MessageStrings.msgIsCode(msgToSend)) {
-							msgToSend = MessageStrings.reduceCodeWhiteSpaces(msgToSend);
-							// This below test will throw an exception if there are errors contained in
-							// the input coded message String. If the system cannot initialize the
-							// below variable then the input String MUST contain errors. This is used to
-							// catch those errors and prohibit invalid messages from being sent.
-							String test = morseCoder.decode(msgToSend);
+							// Decode and then encode the message. This process will ensure the rejection of any input that 
+							// contains invalid characters or invalid Morse Code Character sequences. 
+							msgToSend = morseCoder.encode(morseCoder.decode(MessageStrings.reduceCodeWhiteSpaces(msgToSend)));
 						} else {
 							// If the input message is not Morse Code then encode the message.
 							msgToSend = morseCoder.encode(MessageStrings.reduceTextWhiteSpaces(msgToSend));
