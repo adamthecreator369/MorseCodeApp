@@ -33,7 +33,7 @@ public abstract class ApplicationWindow {
 		// button when they are clicked by the user.
 		performClickActions();
 		// Window exit event.
-		windowClosingEvent();
+		closeWindow();
 	}
 
 	/** Initializes all of the layouts used in a ApplicationWindow. */
@@ -65,7 +65,7 @@ public abstract class ApplicationWindow {
 	}
 
 	/** Specifies what action to take when the window closing event occurs */
-	protected void windowClosingEvent() {
+	protected void closeWindow() {
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				frame.dispose();

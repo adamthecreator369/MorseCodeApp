@@ -35,10 +35,10 @@ public class MorseChat extends ApplicationWindow {
 	private ServerSocket hostServer;
 	private Socket socket;
 
-	private InputStreamReader inputStreamReader;
-	private OutputStreamWriter outputStreamWriter;
-	private BufferedReader bufferedReader;
-	private BufferedWriter bufferedWriter;
+	private InputStreamReader isr;
+	private OutputStreamWriter osr;
+	private BufferedReader br;
+	private BufferedWriter bw;
 	private static StringBuffer toSend;
 	private boolean justSentMsg, hasData;
 
@@ -69,17 +69,7 @@ public class MorseChat extends ApplicationWindow {
 		// a key event occurs.
 		performKeyActions();
 		// ActionListeners for the radio buttons.
-		radioActionListeners();
-	}
-
-	/**
-	 * Formats and prepares the sent message for the BufferWriter used when sending
-	 * a message.
-	 */
-	private static void sendString(String s) {
-		synchronized (toSend) {
-			toSend.append(s.trim() + "\n");
-		}
+		listenForRadioActions();
 	}
 
 	@Override
@@ -126,7 +116,7 @@ public class MorseChat extends ApplicationWindow {
 									switch (status) {
 									case R.status.CONNECTING:
 										layout.changeConnectionStatus(R.string.CONNECTING_STATUS);
-										layout.connectionSettings();
+										layout.changeToConnectSettings();
 										layout.getMsgTxtArea().setEditable(false);
 										// If connecting
 										try {
@@ -140,22 +130,21 @@ public class MorseChat extends ApplicationWindow {
 												socket = new Socket(layout.getIP(), layout.getPort());
 											}
 											// Disallow changing of all of the connection options.
-											layout.connectionSettings();
+											layout.changeToConnectSettings();
 
 											// Objects used for sending and receiving messages.
-											inputStreamReader = new InputStreamReader(socket.getInputStream());
-											outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
-											bufferedReader = new BufferedReader(inputStreamReader);
-											bufferedWriter = new BufferedWriter(outputStreamWriter);
+											isr = new InputStreamReader(socket.getInputStream());
+											osr = new OutputStreamWriter(socket.getOutputStream());
+											br = new BufferedReader(isr);
+											bw = new BufferedWriter(osr);
 											// Change status to connected.
 											status = R.status.CONNECTED;
 										}
 										// If error, clean up.
 										catch (Exception e) {
-											status = R.status.DISCONNECTED;
-											layout.changeConnectionStatus(R.string.DISCONNECTED_STATUS);
+											changeConnectionStatus(R.status.DISCONNECTED, R.string.DISCONNECTING_STATUS );
 											layout.appendText(R.string.ERROR_CONNECTION_FAILED + "\n");
-											layout.disconnectionSettings();
+											layout.changeToDisconnectSettings();
 											break;
 										}
 										break;
@@ -167,24 +156,23 @@ public class MorseChat extends ApplicationWindow {
 											if (toSend.length() != 0) {
 												String msg = toSend.toString();
 
-												bufferedWriter.write(msg);
-												bufferedWriter.newLine();
-												bufferedWriter.flush();
+												bw.write(msg);
+												bw.newLine();
+												bw.flush();
 												// Reset.
 												toSend.setLength(0);
 												continue;
 											}
 											// Receiving messages.
 											String incoming = null;
-											if (bufferedReader.ready()) {
-												incoming = bufferedReader.readLine().trim();
+											if (br.ready()) {
+												incoming = br.readLine().trim();
 											}
 											// Disconnect if the disconnect message is received.
 											if (incoming != null && incoming.equals(R.string.DISCONNECT_COMMAND)) {
-												status = R.status.DISCONNECTED;
-												layout.changeConnectionStatus(R.string.DISCONNECTED_STATUS);
+												changeConnectionStatus(R.status.DISCONNECTED, R.string.DISCONNECTING_STATUS );
 												cleanUp();
-												layout.disconnectionSettings();
+												layout.changeToDisconnectSettings();
 												break;
 											}
 											// If the message is not the one the user just sent.
@@ -195,8 +183,7 @@ public class MorseChat extends ApplicationWindow {
 										} catch (IOException e) {
 											// This should never occur, but if something drastically goes
 											// wrong then disconnect.
-											status = R.status.DISCONNECTED;
-											layout.changeConnectionStatus(R.string.DISCONNECTED_STATUS);
+											changeConnectionStatus(R.status.DISCONNECTED, R.string.DISCONNECTING_STATUS );
 											layout.appendText(R.string.ERROR_DISCONNECTING);
 										}
 										break;
@@ -205,7 +192,7 @@ public class MorseChat extends ApplicationWindow {
 										// Perform the disconnect process.
 										sendDisconnectMsg();
 										cleanUp();
-										layout.disconnectionSettings();
+										layout.changeToDisconnectSettings();
 										break;
 									}
 									if (status == R.status.DISCONNECTED) {
@@ -231,8 +218,7 @@ public class MorseChat extends ApplicationWindow {
 						// If the disconnect button is pushed, change the status
 						// to "disconnected" and which will trigger the disconnect
 						// process to occur.
-						status = R.status.DISCONNECTED;
-						layout.changeConnectionStatus(R.string.DISCONNECTING_STATUS);
+						changeConnectionStatus(R.status.DISCONNECTED, R.string.DISCONNECTING_STATUS );
 					}
 				}
 			});
@@ -318,7 +304,7 @@ public class MorseChat extends ApplicationWindow {
 	}
 	
 	/** ActionListeners for the radio buttons of the Frame's layout. */
-	private void radioActionListeners() {
+	private void listenForRadioActions() {
 		// Change radio button icon's format
 		CustomIcon unselected = new CustomIcon();
 		CustomIcon selected = new CustomIcon(R.color.DARK_GRAY);
@@ -338,6 +324,16 @@ public class MorseChat extends ApplicationWindow {
 		        layout.getHostRadio().setIcon(unselected);
 		    }
 		});
+	}
+	
+	/**
+	 * Formats and prepares the sent message for the BufferWriter used when sending
+	 * a message.
+	 */
+	private static void sendString(String s) {
+		synchronized (toSend) {
+			toSend.append(s.trim() + "\n");
+		}
 	}
 
 	/**
@@ -364,20 +360,20 @@ public class MorseChat extends ApplicationWindow {
 		}
 
 		try {
-			if (bufferedReader != null) {
-				bufferedReader.close();
-				bufferedReader = null;
+			if (br != null) {
+				br.close();
+				br = null;
 			}
 		} catch (IOException e) {
-			bufferedReader = null;
+			br = null;
 		}
 
-		if (bufferedWriter != null) {
+		if (bw != null) {
 			try {
-				bufferedWriter.close();
-				bufferedWriter = null;
+				bw.close();
+				bw = null;
 			} catch (IOException e) {
-				bufferedWriter = null;
+				bw = null;
 			}
 
 		}
@@ -389,10 +385,10 @@ public class MorseChat extends ApplicationWindow {
 	 */
 	private void sendDisconnectMsg() {
 		try {
-			if (bufferedWriter != null) {
-				bufferedWriter.write(R.string.DISCONNECT_COMMAND);
-				bufferedWriter.newLine();
-				bufferedWriter.flush();
+			if (bw != null) {
+				bw.write(R.string.DISCONNECT_COMMAND);
+				bw.newLine();
+				bw.flush();
 			}
 		} catch (IOException e1) {
 			// Simply keep the program from crashing.
@@ -400,17 +396,24 @@ public class MorseChat extends ApplicationWindow {
 	}
 
 	@Override
-	protected void windowClosingEvent() {
+	protected void closeWindow() {
 		getFrame().addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
-				// Clean up and then exit the system.
-				status = R.status.DISCONNECTED;
-				layout.changeConnectionStatus(R.string.DISCONNECTING_STATUS);
+				changeConnectionStatus(R.status.DISCONNECTED, R.string.DISCONNECTING_STATUS );
 				sendDisconnectMsg();
 				cleanUp();
 				System.exit(1);
 			}
 		});
+	}
+	
+	/**
+	 * Changes the connection status.
+	 */
+	private void changeConnectionStatus(int statusNum, String statusStr) {
+		// Clean up and then exit the system.
+		status = statusNum;
+		layout.changeConnectionStatus(statusStr);
 	}
 
 	/**
@@ -421,19 +424,21 @@ public class MorseChat extends ApplicationWindow {
 	private void destroy() {
 		Thread thread = new Thread() {
 			public void run() {
-				// Disable components since the system is down.
-				layout.connectionSettings();
-				layout.getDisconnectBtn().setEnabled(false);
-				layout.getMsgTxtArea().setEditable(false);
-				// Display an error message containing a count down until Frame closure.
-				for (int i = 10; i > 0; i--) {
-					layout.getMsgTxtArea().setText(R.string.ERROR_SYSTEM_DOWN + i + R.string.SECONDS);
-					pause(1000);
-				}
+				layout.disableComponents();
+				displayErrorMessageCountdown();
 				// Close the Frame.
 				getFrame().dispose();
 			}
 		};
 		thread.start();
+	}
+
+	/** Displays an error message with a ten second countdown. */
+	private void displayErrorMessageCountdown() {
+		// Display an error message containing a count down until Frame closure.
+		for (int i = 10; i > 0; i--) {
+			layout.getMsgTxtArea().setText(R.string.ERROR_SYSTEM_DOWN + i + R.string.SECONDS);
+			pause(1000);
+		}
 	}
 }

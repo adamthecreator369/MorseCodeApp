@@ -69,29 +69,6 @@ public class MorseCoder {
 	}
 
 	/**
-	 * Post-order printing of the tree for easy grading. Call this function in the
-	 * build method above and click the MorseCoder app button on the main menu and
-	 * the tree will print to the console in post-order.
-	 */
-	public void printTree(MorseNode root) {
-		MorseNode current = root;
-		// Base case
-		if (current == null) {
-			return;
-		}
-		// Left subtree.
-		if (current.getLeft() != null) {
-			printTree(current.getLeft());
-		}
-		// Right subtree.
-		if (current.getRight() != null) {
-			printTree(current.getRight());
-		}
-		// Print the character value of the MorseNode.
-		System.out.print(current.getCharacter() + " ");
-	}
-
-	/**
 	 * Branches left or right while traversing the tree dependent on the current
 	 * Morse Code character. If the character is a '.' it will return the left
 	 * MorseNode. If the character is a '-' it will return the right MorseNode. When

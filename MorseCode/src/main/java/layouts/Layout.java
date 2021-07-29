@@ -63,7 +63,7 @@ public abstract class Layout {
 	 * @param area: the JTextArea for the JScrollPane.
 	 * @return: the customized JScrollPane.
 	 */
-	protected JScrollPane customJScrollPane(JTextArea area) {
+	protected JScrollPane createCustomScrollPane(JTextArea area) {
 		// Create a new JScrollPane to customize and return. 
 		JScrollPane pane = new JScrollPane(area);
 		// Change the colors of the ScrollBar and the ArrowButtons.

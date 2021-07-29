@@ -19,7 +19,7 @@ public final class R {
 		public final static String DECODE_BTN_TXT = "Decode Message";
 		public final static String DEMO_BTN_TXT = "Play Demo";
 		public final static String RESET_BTN = "Reset";
-		public final static String SEPARATOR = "----------------\n";
+		public final static String SEPARATOR = "-----------------------------\n";
 		public final static String DECODE_HEADING = SEPARATOR + "Decoded Message\n" + SEPARATOR + "\n";
 		public final static String ENCODE_HEADING = SEPARATOR + "Encoded Message\n" + SEPARATOR + "\n";
 		public static final String SPACE_BETWEEN = "\n\n";

@@ -118,14 +118,6 @@ public class ChatLayout extends Layout {
 	public int getPort() {
 		return Integer.parseInt(portField.getText());
 	}
-	
-	/** Gets and returns the current text of the connection label.
-	 * 
-	 * @return: the connection labels text.
-	 */
-	public String getConnectionStatus() {
-		return connectionLabel.getText();
-	}
 
 	/** Adds text to the chat area. */
 	public void appendText(String text) {
@@ -182,7 +174,7 @@ public class ChatLayout extends Layout {
 	}
 
 	/** Makes the necessary changes to component settings after a connection has been made. */
-	public void connectionSettings() {
+	public void changeToConnectSettings() {
 		ipField.setEditable(false);
 		portField.setEditable(false);
 		connectBtn.setEnabled(false);
@@ -193,7 +185,7 @@ public class ChatLayout extends Layout {
 	}
 
 	/** Makes the necessary changes to component settings after disconnecting. */
-	public void disconnectionSettings() {
+	public void changeToDisconnectSettings() {
 		ipField.setEditable(true);
 		portField.setEditable(true);
 		connectBtn.setEnabled(true);
@@ -203,6 +195,14 @@ public class ChatLayout extends Layout {
 		disconnectBtn.setEnabled(false);
 		chatTxtArea.setText(null);
 		msgTxtArea.setText(null);
+	}
+	
+	/** Disables components. */
+	public void disableComponents() {
+		// Disable components since the system is down.
+		changeToConnectSettings();
+		getDisconnectBtn().setEnabled(false);
+		getMsgTxtArea().setEditable(false);
 	}
 
 	@Override
@@ -223,8 +223,8 @@ public class ChatLayout extends Layout {
 		disconnectBtn = new CustomButton(R.string.DISCONNECT);
 		msgTxtArea = new JTextArea();
 		chatTxtArea = new JTextArea();
-		msgScrollPane = customJScrollPane(msgTxtArea);
-		chatScrollPane = customJScrollPane(chatTxtArea);
+		msgScrollPane = createCustomScrollPane(msgTxtArea);
+		chatScrollPane = createCustomScrollPane(chatTxtArea);
 		hostGuestGroup = new ButtonGroup();
 		hostGuestGroup.add(hostRadio);
 		hostGuestGroup.add(guestRadio);
@@ -301,5 +301,13 @@ public class ChatLayout extends Layout {
 		connectionLabel.setForeground(R.color.DARK_GRAY);
 		hostRadio.setFont(R.font.SMALL);
 		guestRadio.setFont(R.font.SMALL);
+	}
+
+	/**
+	 * Gets and returns the current connectionLable text String.
+	 * @return: the connectionLabel text.
+	 */
+	public String getConnectionStatus() {
+		return connectionLabel.getText();
 	}
 }

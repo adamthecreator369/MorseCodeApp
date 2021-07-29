@@ -158,8 +158,8 @@ public class EnDecoderLayout extends Layout {
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
 		conversionTxtArea.setBounds(R.dimens.TOOL_TXT_AREA_X, R.dimens.CONV_AREA_Y, R.dimens.TOOL_TXT_AREA_WIDTH,
 				R.dimens.TOOL_TXT_AREA_HEIGHT);
-		mScrollPane = customJScrollPane(msgTxtArea);
-		cScrollPane = customJScrollPane(conversionTxtArea);
+		mScrollPane = createCustomScrollPane(msgTxtArea);
+		cScrollPane = createCustomScrollPane(conversionTxtArea);
 		setComponents(new JComponent[] { titleLabel, msgLabel, conversionLabel, encodeBtn, decodeBtn, demoBtn, resetBtn, mScrollPane,
 				cScrollPane });
 	}
